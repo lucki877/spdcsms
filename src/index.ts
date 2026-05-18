@@ -16,11 +16,14 @@ const prisma = new PrismaClient();
 // Health check endpoint
 app.get("/health", async (req, res) => {
   try {
-    // Simple DB query to confirm connectivity
     await prisma.$queryRaw`SELECT 1`;
     res.json({ status: "ok", db: "connected" });
-  } catch (error) {
-    res.status(500).json({ status: "error", db: "not connected", details: error.message });
+  } catch (error: any) {   // 👈 cast error to any
+    res.status(500).json({
+      status: "error",
+      db: "not connected",
+      details: error.message
+    });
   }
 });
 
