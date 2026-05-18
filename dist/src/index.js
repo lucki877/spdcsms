@@ -12,6 +12,9 @@ app.use(express_1.default.json());
 app.use("/api/chargers", chargers_1.default);
 app.use("/api/users", users_1.default);
 const PORT = process.env.PORT || 4000;
+app.get("/health", async (req, res) => {
+    res.json({ status: "ok", db: "connected" });
+});
 app.listen(PORT, () => {
     console.log(`CSMS backend running on port ${PORT}`);
 });
