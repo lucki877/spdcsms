@@ -1,4 +1,5 @@
 import express from "express";
+import { PrismaClient } from "@prisma/client";
 import chargerRoutes from "./routes/chargers";
 import userRoutes from "./routes/users";
 
